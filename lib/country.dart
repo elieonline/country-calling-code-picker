@@ -7,7 +7,7 @@ class Country {
   const Country(this.name, this.flag, this.countryCode, this.callingCode);
 
   factory Country.fromJson(Map<String, dynamic> json) {
-    return new Country(
+    return Country(
       json['name'] as String,
       json['flag'] as String,
       json['country_code'] as String,

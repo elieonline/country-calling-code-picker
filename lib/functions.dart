@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:country_calling_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_sim_country_code/flutter_sim_country_code.dart';
 
 import './country.dart';
@@ -12,11 +11,9 @@ Future<List<Country>> getCountries(BuildContext context) async {
   String rawData = await DefaultAssetBundle.of(context).loadString(
       'packages/country_calling_code_picker/raw/country_codes.json');
   final parsed = json.decode(rawData.toString()).cast<Map<String, dynamic>>();
-  return parsed.map<Country>((json) => new Country.fromJson(json)).toList();
+  return parsed.map<Country>((json) => Country.fromJson(json)).toList();
 }
 
-///This function returns an user's current country. User's sim country code is matched with the ones in the list.
-///If there is no sim in the device, first country in the list will be returned.
 ///This function returns an user's current country. User's sim country code is matched with the ones in the list.
 ///If there is no sim in the device, first country in the list will be returned.
 Future<Country> getDefaultCountry(BuildContext context) async {
@@ -37,15 +34,15 @@ Future<Country> getDefaultCountry(BuildContext context) async {
 Future<Country?> getCountryByCountryCode(
     BuildContext context, String countryCode) async {
   final list = await getCountries(context);
-  return list.firstWhere((element) => element.countryCode == countryCode);
+  return list.firstWhere((element) => element.countryCode == countryCode, orElse: () => list.first,);
 }
 
 Future<Country?> showCountryPickerSheet(BuildContext context,
     {Widget? title,
     Widget? cancelWidget,
-    double cornerRadius: 35,
-    bool focusSearchBox: false,
-    double heightFactor: 0.9}) {
+    double cornerRadius = 35,
+    bool focusSearchBox = false,
+    double heightFactor = 0.9}) {
   assert(heightFactor <= 0.9 && heightFactor >= 0.4,
       'heightFactor must be between 0.4 and 0.9');
   return showModalBottomSheet<Country?>(
@@ -100,8 +97,8 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
 Future<Country?> showCountryPickerDialog(
   BuildContext context, {
   Widget? title,
-  double cornerRadius: 35,
-  bool focusSearchBox: false,
+  double cornerRadius = 35,
+  bool focusSearchBox = false,
 }) {
   return showDialog<Country?>(
       context: context,

@@ -27,14 +27,14 @@ class CountryPickerWidget extends StatefulWidget {
   /// Flag icon size (width). Default set to 32.
   final double flagIconSize;
 
-  ///Can bopening the keyboard automatically. Default set to `false`
+  ///Can be set to `true` for showing the List Separator. Default set to `false`
+  final bool showSeparator;
+
+  ///Can be set to `true` for opening the keyboard automatically. Default set to `false`
   final bool focusSearchBox;
 
   ///This will change the hint of the search box. Alternatively [searchInputDecoration] can be used to change decoration fully.
-  final String searchHintText;e set to `true` for showing the List Separator. Default set to `false`
-  final bool showSeparator;
-
-  ///Can be set to `true` for 
+  final String searchHintText;
 
   const CountryPickerWidget({
     Key? key,

@@ -27,14 +27,14 @@ class CountryPickerWidget extends StatefulWidget {
   /// Flag icon size (width). Default set to 32.
   final double flagIconSize;
 
-  ///Can be set to `true` for showing the List Separator. Default set to `false`
-  final bool showSeparator;
-
-  ///Can be set to `true` for opening the keyboard automatically. Default set to `false`
+  ///Can bopening the keyboard automatically. Default set to `false`
   final bool focusSearchBox;
 
   ///This will change the hint of the search box. Alternatively [searchInputDecoration] can be used to change decoration fully.
-  final String searchHintText;
+  final String searchHintText;e set to `true` for showing the List Separator. Default set to `false`
+  final bool showSeparator;
+
+  ///Can be set to `true` for 
 
   const CountryPickerWidget({
     Key? key,
@@ -112,7 +112,8 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
             (element) => element.callingCode == country.callingCode);
         _list.insert(0, country);
       }
-    } catch (e) {} finally {
+    } catch (e) {
+    } finally {
       setState(() {
         _filteredList = _list.map((e) => e).toList();
         _isLoading = false;
@@ -147,7 +148,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                   ),
                   border: OutlineInputBorder(
                     borderSide: BorderSide(),
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   contentPadding:
                       EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
@@ -180,19 +181,32 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                             bottom: 12, top: 12, left: 24, right: 24),
                         child: Row(
                           children: <Widget>[
-                            Image.asset(
-                              _filteredList[index].flag,
-                              package: countryCodePackageName,
+                            Container(
+                              height: widget.flagIconSize,
                               width: widget.flagIconSize,
+                              decoration: ShapeDecoration(
+                                shape: const OvalBorder(),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    _filteredList[index].flag,
+                                    package: countryCodePackageName,
+                                  ),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
                             ),
-                            SizedBox(
-                              width: 16,
-                            ),
+                            SizedBox(width: 16),
                             Expanded(
-                                child: Text(
-                              '${_filteredList[index].callingCode} ${_filteredList[index].name}',
+                              child: Text(
+                                '${_filteredList[index].name}',
+                                style: widget.itemTextStyle,
+                              ),
+                            ),
+                            SizedBox(width: 16),
+                            Text(
+                              '${_filteredList[index].callingCode}',
                               style: widget.itemTextStyle,
-                            )),
+                            ),
                           ],
                         ),
                       ),

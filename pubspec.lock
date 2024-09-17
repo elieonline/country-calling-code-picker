@@ -67,7 +67,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "88d61ff7672bf0d93d040a04df27e220caab1a21"
+      resolved-ref: "14000808ce1af33aa4a98932358a1921eaa173c3"
       url: "https://github.com/elieonline/flutter_sim_country_code.git"
     source: git
     version: "0.1.2"

@@ -65,11 +65,12 @@ packages:
   flutter_sim_country_code:
     dependency: "direct main"
     description:
-      name: flutter_sim_country_code
-      sha256: "3c2e3d7c93e8a0790870691668c920b40aa259e2ce67eae8432e70e8ec955057"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.1"
+      path: "."
+      ref: HEAD
+      resolved-ref: "88d61ff7672bf0d93d040a04df27e220caab1a21"
+      url: "https://github.com/elieonline/flutter_sim_country_code.git"
+    source: git
+    version: "0.1.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter

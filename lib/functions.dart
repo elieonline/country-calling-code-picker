@@ -40,6 +40,7 @@ Future<Country?> getCountryByCountryCode(
 Future<Country?> showCountryPickerSheet(BuildContext context,
     {Widget? title,
     Widget? cancelWidget,
+    Color? backgroundColor,
     double cornerRadius = 35,
     bool focusSearchBox = false,
     double heightFactor = 0.9}) {
@@ -47,6 +48,7 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
       'heightFactor must be between 0.4 and 0.9');
   return showModalBottomSheet<Country?>(
       context: context,
+      backgroundColor: backgroundColor,
       isScrollControlled: true,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -54,6 +56,7 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
               topRight: Radius.circular(cornerRadius))),
       builder: (_) {
         return Container(
+          color: backgroundColor,
           height: MediaQuery.of(context).size.height * heightFactor,
           child: Column(
             children: <Widget>[

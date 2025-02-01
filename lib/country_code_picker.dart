@@ -122,7 +122,9 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
         _list.insert(0, country);
       }
     } catch (e) {
+      debugPrint("Here" + e.toString());
     } finally {
+      print("object");
       setState(() {
         _filteredList = _list.map((e) => e).toList();
         _isLoading = false;

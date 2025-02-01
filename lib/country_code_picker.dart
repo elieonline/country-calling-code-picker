@@ -36,6 +36,9 @@ class CountryPickerWidget extends StatefulWidget {
   ///This will change the hint of the search box. Alternatively [searchInputDecoration] can be used to change decoration fully.
   final String searchHintText;
 
+  ///Selected country, this will be use ahead of sim country if it's available.
+  final Country? selectedCountry;
+
   const CountryPickerWidget({
     Key? key,
     this.onSelected,
@@ -46,6 +49,7 @@ class CountryPickerWidget extends StatefulWidget {
     this.flagIconSize = 32,
     this.showSeparator = false,
     this.focusSearchBox = false,
+    this.selectedCountry,
   }) : super(key: key);
 
   @override
@@ -104,8 +108,13 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
     _list = await getCountries(context);
     try {
       String? code = await FlutterSimCountryCode.simCountryCode;
-      _currentCountry =
+      if (widget.selectedCountry != null) {
+         _currentCountry =
+          _list.firstWhere((element) => element.countryCode == widget.selectedCountry?.countryCode);
+      } else {
+         _currentCountry =
           _list.firstWhere((element) => element.countryCode == code);
+      }
       final country = _currentCountry;
       if (country != null) {
         _list.removeWhere(
@@ -125,9 +134,7 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SizedBox(
-          height: 16,
-        ),
+        SizedBox(height: 16),
         Padding(
           padding: const EdgeInsets.only(left: 24, right: 24),
           child: TextField(

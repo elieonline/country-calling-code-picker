@@ -43,6 +43,7 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
     Color? backgroundColor,
     double cornerRadius = 35,
     bool focusSearchBox = false,
+    Country? selectedCountry,
     double heightFactor = 0.9}) {
   assert(heightFactor <= 0.9 && heightFactor >= 0.4,
       'heightFactor must be between 0.4 and 0.9');
@@ -88,6 +89,8 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
               SizedBox(height: 16),
               Expanded(
                 child: CountryPickerWidget(
+                  selectedCountry: selectedCountry,
+                  focusSearchBox: focusSearchBox,
                   onSelected: (country) => Navigator.of(context).pop(country),
                 ),
               ),
@@ -102,6 +105,7 @@ Future<Country?> showCountryPickerDialog(
   Widget? title,
   double cornerRadius = 35,
   bool focusSearchBox = false,
+  Country? selectedCountry,
 }) {
   return showDialog<Country?>(
       context: context,
@@ -140,6 +144,8 @@ Future<Country?> showCountryPickerDialog(
                 SizedBox(height: 16),
                 Expanded(
                   child: CountryPickerWidget(
+                    selectedCountry: selectedCountry,
+                    focusSearchBox: focusSearchBox,
                     onSelected: (country) => Navigator.of(context).pop(country),
                   ),
                 ),

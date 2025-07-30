@@ -44,7 +44,9 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
     double cornerRadius = 35,
     bool focusSearchBox = false,
     Country? selectedCountry,
-    double heightFactor = 0.9}) {
+    double heightFactor = 0.9,
+    bool showCallingCode = true,
+    }) {
   assert(heightFactor <= 0.9 && heightFactor >= 0.4,
       'heightFactor must be between 0.4 and 0.9');
   return showModalBottomSheet<Country?>(
@@ -91,6 +93,7 @@ Future<Country?> showCountryPickerSheet(BuildContext context,
                 child: CountryPickerWidget(
                   selectedCountry: selectedCountry,
                   focusSearchBox: focusSearchBox,
+                  showCallingCode: showCallingCode,
                   onSelected: (country) => Navigator.of(context).pop(country),
                 ),
               ),

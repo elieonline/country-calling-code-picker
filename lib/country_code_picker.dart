@@ -39,6 +39,9 @@ class CountryPickerWidget extends StatefulWidget {
   ///Selected country, this will be use ahead of sim country if it's available.
   final Country? selectedCountry;
 
+  ///
+  final bool showCallingCode;
+
   const CountryPickerWidget({
     Key? key,
     this.onSelected,
@@ -50,6 +53,7 @@ class CountryPickerWidget extends StatefulWidget {
     this.showSeparator = false,
     this.focusSearchBox = false,
     this.selectedCountry,
+    this.showCallingCode = true,
   }) : super(key: key);
 
   @override
@@ -211,11 +215,13 @@ class _CountryPickerWidgetState extends State<CountryPickerWidget> {
                                 style: widget.itemTextStyle,
                               ),
                             ),
-                            SizedBox(width: 16),
-                            Text(
-                              '${_filteredList[index].callingCode}',
-                              style: widget.itemTextStyle,
-                            ),
+                            if(widget.showCallingCode) ... [
+                              SizedBox(width: 16),
+                              Text(
+                                '${_filteredList[index].callingCode}',
+                                style: widget.itemTextStyle,
+                              ),
+                            ],
                           ],
                         ),
                       ),
